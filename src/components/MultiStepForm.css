@@ -1,0 +1,73 @@
+.multi-step-form-container {
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #4caf50; /* Green border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8; /* Light gray background */
+    margin-top: 50px;
+  }
+  
+  .form-page {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #333; /* Dark gray text */
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc; /* Light gray border */
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .button-container button {
+    background-color: #4caf50; /* Green background */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .button-container button:disabled {
+    background-color: #ccc; /* Light gray background for disabled button */
+    cursor: not-allowed;
+  }
+  
+  .submission-details {
+    margin-top: 20px;
+    border: 1px solid #3498db; /* Blue border */
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ecf0f1; /* Light blue background */
+  }
+  
+  .submission-details h3 {
+    color: #3498db; /* Blue text */
+    margin-bottom: 10px;
+  }
+  
+  .submission-details p {
+    margin: 5px 0;
+    color: #333; /* Dark gray text */
+  }
+  
