@@ -163,17 +163,17 @@ const MultiStepForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    const result = {...formData};
-    setSubmissionResult(result);
-    console.log('Form Submitted:', formData);
-  };
-
   useEffect(() => {
+    const handleSubmit = () => {
+      const result = { ...formData };
+      setSubmissionResult(result);
+      console.log('Form Submitted:', formData);
+    };
+
     if (currentPage === 4) {
       handleSubmit();
     }
-  }, [currentPage,handleSubmit]);
+  }, [currentPage, formData, setSubmissionResult]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -359,22 +359,20 @@ const MultiStepForm = () => {
   };
 
   return (
-
     <div className='background'>
-    <h2 className='main-head'>Multistep Form</h2>
-    <div className="multi-step-form-container">
-      {renderPage()}
-      {currentPage !== 4 && (
-        <div className="button-container">
-          <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <button onClick={handleNextPage}>Next</button>
-        </div>
-      )}
+      <h2 className='main-head'>Multistep Form</h2>
+      <div className="multi-step-form-container">
+        {renderPage()}
+        {currentPage !== 4 && (
+          <div className="button-container">
+            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+              Previous
+            </button>
+            <button onClick={handleNextPage}>Next</button>
+          </div>
+        )}
+      </div>
     </div>
-    </div>
-
   );
 };
 
