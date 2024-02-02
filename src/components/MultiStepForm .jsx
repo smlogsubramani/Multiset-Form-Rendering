@@ -173,7 +173,7 @@ const MultiStepForm = () => {
     if (currentPage === 4) {
       handleSubmit();
     }
-  }, [currentPage]);
+  }, [currentPage,handleSubmit]);
 
   const renderPage = () => {
     switch (currentPage) {
