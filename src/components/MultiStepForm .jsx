@@ -30,20 +30,29 @@ const MultiStepForm = () => {
     const { firstName, lastName, email } = formData.personalDetails;
     let errors = {};
 
+    // first name validation 
     if (!firstName.trim()) {
       errors.firstName = 'First Name is required';
     }
+    else if (!/^[A-Za-z]+$/.test(firstName)) {
+      errors.firstName = 'First Name should contain only alphabets';
+    }
+
+    //last name validation
 
     if (!lastName.trim()) {
       errors.lastName = 'Last Name is required';
     }
+    else if (!/^[A-Za-z]+$/.test(lastName)) {
+      errors.lastName = 'First Name should contain only alphabets';
+    }
 
+    //Email validation
     if (!email.trim()) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = 'Invalid email address';
     }
-
     return errors;
   };
 
@@ -65,6 +74,8 @@ const MultiStepForm = () => {
 
     if (!zipCode.trim()) {
       errors.zipCode = 'Zip Code is required';
+    }else if (!/^\d{6}$/.test(zipCode)){
+      errors.zipCode = 'Zip Code is not valid';
     }
 
     return errors;
@@ -74,16 +85,40 @@ const MultiStepForm = () => {
     const { cardNumber, expirationDate, cvv } = formData.paymentDetails;
     let errors = {};
 
+
+    //card validation 
     if (!cardNumber.trim()) {
       errors.cardNumber = 'Card Number is required';
-    }
+    }else if (!/^\d{16}$/.test(cardNumber)){
+      errors.cardNumber='card Number is not valid'
+    } 
+
+
+    //date validation 
 
     if (!expirationDate.trim()) {
       errors.expirationDate = 'Expiration Date is required';
+    }else {
+      const isValidDate = /^\d{2}\/\d{2}$/.test(expirationDate); // MM YY formate
+    
+      if (!isValidDate) {
+        errors.expirationDate = 'Expiration Date should be in MM/YY format';
+      } else {
+        const [month, year] = expirationDate.split('/');
+        const currentDate = new Date();
+        const inputDate = new Date(`20${year}`, month - 1);     
+        if (inputDate < currentDate) {
+          errors.expirationDate = 'Expiration Date should be in the future';
+        }
+      }
     }
 
+    // check for cvv 
+    
     if (!cvv.trim()) {
       errors.cvv = 'CVV is required';
+    }else if (!/^\d{3}$/.test(cvv)){
+      errors.cvv = 'CVV is invalid';
     }
 
     return errors;
@@ -324,6 +359,9 @@ const MultiStepForm = () => {
   };
 
   return (
+
+    <div className='background'>
+    <h2 className='main-head'>Multistep Form</h2>
     <div className="multi-step-form-container">
       {renderPage()}
       {currentPage !== 4 && (
@@ -335,6 +373,8 @@ const MultiStepForm = () => {
         </div>
       )}
     </div>
+    </div>
+
   );
 };
 
